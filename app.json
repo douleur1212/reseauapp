@@ -1,0 +1,85 @@
+{
+  "expo": {
+    "name": "Réseau",
+    "slug": "reseauapp",
+    "version": "2.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B0714"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.kar.reseauapp",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Pour prendre des photos de profil",
+        "NSPhotoLibraryUsageDescription": "Pour choisir vos photos de profil",
+        "NSMicrophoneUsageDescription": "Pour les appels audio avec les membres",
+        "NSUserNotificationsUsageDescription": "Pour recevoir les messages et notifications de matchs"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0B0714"
+      },
+      "package": "com.kar.reseauapp",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "RECORD_AUDIO",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "USE_FINGERPRINT",
+        "USE_BIOMETRIC"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#E8305A"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "L'application accède à vos photos pour votre profil.",
+          "cameraPermission": "L'application accède à votre caméra pour les photos de profil."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "backgroundColor": "#0B0714",
+          "resizeMode": "contain"
+        }
+      ]
+    ],
+    "scheme": "reseau",
+    "extra": {
+      "eas": {
+        "projectId": "9931c413-059e-4f44-9aed-026dda7a0a99"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}
