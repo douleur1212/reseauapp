@@ -44,7 +44,8 @@
     "lottie-react-native": "6.7.0",
     "date-fns": "^3.6.0",
     "@expo-google-fonts/playfair-display": "^0.3.0",
-    "@expo-google-fonts/dm-sans": "^0.3.0"
+    "@expo-google-fonts/dm-sans": "^0.3.0",
+    "base64-arraybuffer": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
