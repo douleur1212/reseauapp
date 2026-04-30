@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Réseau",
-    "slug": "reseauapp",
+    "slug": "reseau-app",
     "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#0B0714"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.kar.reseauapp",
@@ -61,14 +59,6 @@
         {
           "photosPermission": "L'application accède à vos photos pour votre profil.",
           "cameraPermission": "L'application accède à votre caméra pour les photos de profil."
-        }
-      ],
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/splash.png",
-          "backgroundColor": "#0B0714",
-          "resizeMode": "contain"
         }
       ]
     ],
