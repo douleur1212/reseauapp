@@ -68,7 +68,7 @@ export async function register(regData: RegisterData) {
     zone_recherche:    regData.sz || '',
     religion_pref:     regData.relPref || '',
     photos:            photoUrls,
-    photo_principale:  photoUrls[regData.mainIdx ?? 0] || photoUrls[0] || '',
+    photo_url:  photoUrls[regData.mainIdx ?? 0] || photoUrls[0] || '',
     credits:           0,
     abonnement:        'gratuit',
     statut:            'en_attente',
@@ -104,7 +104,7 @@ export async function fetchMyProfile(userId: string) {
 export async function setOnlineStatus(userId: string, online: boolean) {
   await supabase
     .from(TABLES.MEMBRES)
-    .update({ en_ligne: online, last_seen: new Date().toISOString() })
+    .update({ en_ligne: online, derniere_activite: new Date().toISOString() })
     .eq('id', userId);
 }
 

@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                              new Date(profile.premium_expiry) > new Date()
                            ),
           premium_expiry:  profile.premium_expiry,
-          photo:           profile.photo_principale || '',
+          photo:           profile.photo_url || '',
           photos:          profile.photos || [],
           push_token:      profile.push_token,
         });

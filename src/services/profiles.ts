@@ -43,11 +43,11 @@ export function normalizeProfile(raw: any): Profile {
     langs:      raw.langues || [],
     certified:  raw.certified || false,
     online:     raw.en_ligne || false,
-    lastSeen:   raw.last_seen || null,
+    lastSeen:   raw.derniere_activite || null,
     credits:    raw.credits || 0,
     // Photos : utiliser photo_principale ou fallback avatar
-    url:        raw.photo_principale || AVATAR_FALLBACK(raw.prenom || 'user'),
-    photos:     raw.photos || (raw.photo_principale ? [raw.photo_principale] : []),
+    url:        raw.photo_url || AVATAR_FALLBACK(raw.prenom || 'user'),
+    photos:     raw.photos_supplementaires || (raw.photo_url ? [raw.photo_url] : []),
   };
 }
 
