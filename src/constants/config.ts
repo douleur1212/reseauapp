@@ -196,7 +196,7 @@ export const DIAL_CODES = [
 
 // Supabase table names
 export const TABLES = {
-  MEMBRES:        'profiles',
+  MEMBRES:        'membres',
   LIKES:          'likes',
   MESSAGES:       'messages',
   CONVERSATIONS:  'conversations',
