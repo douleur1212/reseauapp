@@ -13,7 +13,7 @@ export async function fetchProfiles(
 ): Promise<Profile[]> {
   let query = supabase
     .from(TABLES.MEMBRES)
-    .select('id, prenom, nom, age, genre, pays, ville, bio, langues, photo_principale, photos, certified, en_ligne, last_seen, credits')
+    .select('id, prenom, nom, age, genre, pays, ville, bio, langues, photo_url, photos_supplementaires, en_ligne, derniere_activite, credits')
     .neq('id', currentUserId)
     .eq('statut', 'actif')
     .limit(100);
