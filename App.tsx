@@ -11,8 +11,6 @@ import { useFonts, PlayfairDisplay_700Bold, PlayfairDisplay_400Italic, PlayfairD
 import { DMSans_400Regular, DMSans_500Medium, DMSans_600SemiBold } from '@expo-google-fonts/dm-sans';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Notifications from 'expo-notifications';
-import { useNavigation } from '@react-navigation/native';
-
 import { AuthProvider } from '@context/AuthContext';
 import AppNavigator from '@navigation/AppNavigator';
 
