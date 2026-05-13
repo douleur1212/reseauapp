@@ -3,8 +3,8 @@
 // ══════════════════════════════════════════════════
 
 import 'react-native-url-polyfill/auto';
-import React, { useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
+import React, { useEffect, useState } from 'react';
+import { StatusBar, View, Text, ScrollView } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts, PlayfairDisplay_700Bold, PlayfairDisplay_400Italic, PlayfairDisplay_600SemiBold } from '@expo-google-fonts/playfair-display';
@@ -14,10 +14,10 @@ import * as Notifications from 'expo-notifications';
 import { AuthProvider } from '@context/AuthContext';
 import AppNavigator from '@navigation/AppNavigator';
 
-// Garder le splash screen visible pendant le chargement
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [error, setError] = useState<string | null>(null);
   const [fontsLoaded, fontError] = useFonts({
     PlayfairDisplay_700Bold,
     PlayfairDisplay_400Italic,
@@ -29,48 +29,57 @@ export default function App() {
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync().catch(() => {});
     }
   }, [fontsLoaded, fontError]);
 
+  if (error) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#0B0714', padding: 20, paddingTop: 60 }}>
+        <Text style={{ color: 'red', fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>
+          ERREUR AU DÉMARRAGE
+        </Text>
+        <ScrollView>
+          <Text style={{ color: 'white', fontSize: 13 }}>{error}</Text>
+        </ScrollView>
+      </View>
+    );
+  }
+
   if (!fontsLoaded && !fontError) return null;
 
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <AuthProvider>
-          <StatusBar style="light" backgroundColor="#0B0714" />
-          <AppNavigator />
-          <NotificationHandler />
-        </AuthProvider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
-  );
+  try {
+    return (
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaProvider>
+          <AuthProvider>
+            <StatusBar style="light" backgroundColor="#0B0714" />
+            <AppNavigator />
+            <NotificationHandler />
+          </AuthProvider>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    );
+  } catch (e: any) {
+    setError(e?.message || String(e));
+    return null;
+  }
 }
 
-// ── Gestionnaire de notifications ─────────────────
 function NotificationHandler() {
   useEffect(() => {
-    // Notification reçue en foreground
     const sub1 = Notifications.addNotificationReceivedListener(notification => {
       const data = notification.request.content.data;
       console.log('[Push] Notification reçue:', data?.type);
     });
-
-    // Tap sur une notification
     const sub2 = Notifications.addNotificationResponseReceivedListener(response => {
       const data = response.notification.request.content.data;
       console.log('[Push] Tap sur notification:', data?.type);
-      // Navigation selon le type :
-      // if (data?.type === 'message') navigation.navigate('Chat', { ... })
-      // if (data?.type === 'match')   navigation.navigate('History')
     });
-
     return () => {
       sub1.remove();
       sub2.remove();
     };
   }, []);
-
   return null;
 }
