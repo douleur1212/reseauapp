@@ -63,8 +63,6 @@ export default LandingScreen;
 // ══════════════════════════════════════════════════
 //  RÉSEAU — ProfileDetailScreen (fiche profil modale)
 // ══════════════════════════════════════════════════
-export { default as ProfileDetailScreen } from './ProfileDetailScreenImpl';
-
 const styles = StyleSheet.create({
   lContainer:  { flex: 1 },
   lScroll:     { padding: SPACING.xl, paddingBottom: 40 },
